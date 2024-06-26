@@ -219,6 +219,7 @@ export default {
   saveDroneVideoBlob(req: any, res: Response) {
     console.log("------[user.ts] ------ saveDroneVideoBlob() ------");
     try {
+      
       // 透過router.post("/user/saveDroneVideoBlob", upload.array("files"), user.uploadFiles);中的upload.array("files")，解析了前端傳送的formData中的Blob物件，所以後端可以直接透過req.files取得解析的資料，其他沒有解析的依舊要從req.body中取得，例如ormData中的test選項的內容，需要用req.body.test取得
       // console.log(req.files);
       // console.log(req.files[0].buffer);
@@ -231,6 +232,7 @@ export default {
       const fs = require('fs');
       /**** 確保文件夾存在，如果不存在就創建 ****/
       // 【建立此用戶專用資料夾】
+      if (!fs.existsSync("./uploads")) fs.mkdirSync("./uploads");
       const user_Folder = `./uploads/${userName}`;
       if (!fs.existsSync(user_Folder)) fs.mkdirSync(user_Folder);
       // 【建立此用戶的個別droneID專用資料夾】

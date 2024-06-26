@@ -35,14 +35,14 @@
             <a-menu-item key="account">
               <router-link to="account">Account</router-link>
             </a-menu-item>
-            <a-menu-item key="drone">
+            <!-- <a-menu-item key="drone">
               <router-link to="enroll">Add drones</router-link>
-            </a-menu-item>
+            </a-menu-item> -->
             <a-menu-item key="records">
               <router-link to="records">Records</router-link>
             </a-menu-item>
             <a-menu-item key="monitor">
-                  <router-link to="monitor">Monitor</router-link>
+              <router-link to="monitor">Monitor</router-link>
             </a-menu-item>
             <a-menu-item key="logout">
               <router-link to="logout">Logout</router-link>
@@ -121,19 +121,23 @@ header {
 
     .logo {
       display: flex;
+
       .logo__icon {
         width: 25px;
         height: 25px;
         margin-right: 10px;
+
         @media (min-width: 480px) {
           width: 30px;
           height: 30px;
         }
       }
+
       .logo__title {
         @media (max-width: 659px) {
           display: none;
         }
+
         @media (min-width: 660px) {
           width: 200px;
           font-size: 1rem;
@@ -141,6 +145,7 @@ header {
         }
       }
     }
+
     .link {
       line-height: 60px;
       display: flex;

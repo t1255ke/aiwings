@@ -1,34 +1,16 @@
 <template>
   <!-- <p>test>>>{{ TEST_dronesInfo }}</p> -->
-  <a-form
-    ref="formRef"
-    name="dynamic_form_item"
-    layout="vertical"
-    :model="dynamicValidateForm"
-  >
-    <a-form-item
-      v-for="(drone, index) in dynamicValidateForm.drones"
-      :key="drone.key"
-      :label="index === 0 ? 'DroneID' : ''"
-      :name="['drones', index, 'value']"
-      :rules="{
+  <a-form ref="formRef" name="dynamic_form_item" layout="vertical" :model="dynamicValidateForm">
+    <a-form-item v-for="(drone, index) in dynamicValidateForm.drones" :key="drone.key"
+      :label="index === 0 ? 'DroneID' : ''" :name="['drones', index, 'value']" :rules="{
         required: true,
         message: 'drone can not be null',
         trigger: 'change',
-      }"
-      style="width: calc(100% + 40px)"
-    >
-      <a-input
-        v-model:value="drone.value"
-        placeholder="Input your droneID"
-        style="width: calc(100% - 40px); margin-right: 10px"
-      />
-      <MinusCircleOutlined
-        v-if="dynamicValidateForm.drones.length > 1"
-        class="dynamic-delete-button"
-        :disabled="dynamicValidateForm.drones.length === 1"
-        @click="removeDrone(drone)"
-      />
+      }" style="width: calc(100% + 40px)">
+      <a-input v-model:value="drone.value" placeholder="Input your droneID"
+        style="width: calc(100% - 40px); margin-right: 10px" />
+      <MinusCircleOutlined v-if="dynamicValidateForm.drones.length > 1" class="dynamic-delete-button"
+        :disabled="dynamicValidateForm.drones.length === 1" @click="removeDrone(drone)" />
     </a-form-item>
     <a-form-item>
       <a-button type="dashed" style="width: 100%" @click="addDrone">
@@ -62,7 +44,7 @@ export default defineComponent({
       drones: [],
     });
 
-    console.log("在Enroll, 新增前store.state.user = ", store.state.user);
+    // console.log("在Enroll, 新增前store.state.user = ", store.state.user);
 
     const submitForm = async function () {
       formRef.value
@@ -148,13 +130,16 @@ export default defineComponent({
   color: #999;
   transition: all 0.3s;
 }
+
 .dynamic-delete-button:hover {
   color: #777;
 }
+
 .dynamic-delete-button[disabled] {
   cursor: not-allowed;
   opacity: 0.5;
 }
+
 .ant-form {
   width: 100%;
 }

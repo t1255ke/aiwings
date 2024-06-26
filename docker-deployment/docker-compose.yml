@@ -28,7 +28,7 @@ services:
   rabbitmq_service:
     container_name: rabbitmq
     image: rabbitmq:management
-    restart: always  
+    restart: always
     ports:
       - '5672:5672'
       - '15672:15672'
@@ -54,14 +54,14 @@ services:
       MYSQL_PASSWORD: ${MYSQL_SERVICE_PASSWORD}
     # NOTE: use of "mysql_native_password" is not recommended: https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html#upgrade-caching-sha2-password
     # (this is just an example, not intended to be a production configuration)
-    
+
 
   backend:
     container_name: back-end
     image: 2023aiotlab/api_server
     restart: always
     # 令 docker-compose up backend 時會先建立並啟動服務名rabbitmq和mysql
-    depends_on: 
+    depends_on:
       - rabbitmq_service
       - mysql_service
       # rabbitmq_service、mysql_service是前面建立好的服務
@@ -84,7 +84,7 @@ services:
     # 其他容器服務名稱好像要透過系統環境變數，才可被解析成區域IP
     # volumes:
     #   - ./.env.docker:/app/.env
-    
+
 
 
 
@@ -100,8 +100,8 @@ services:
     environment:
       URL_FRONTEND: ${URL_FRONTEND}
       URL_BACKEND: backend
-    # volumes:
-    # - ./ssl/:/etc/nginx/ssl/
+    volumes:
+      - ${SSL_folder}:/etc/nginx/ssl/
 
 # -d|detach：在後台運行。此為docker run 命令，屬容器級別
 # docker-compose.yml檔案 屬於服務級別
